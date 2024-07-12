@@ -12,11 +12,11 @@ contract UsersFactory {
     }
 
     function additionCalc(address calc, uint256 num1, uint256 num2) public {
-        Calculator(calc).addition(num1, num2);
+        Calculator(calc).addition(num1, num2, msg.sender);
     }
 
     function subtractionCalc(address calc, uint256 num1, uint256 num2) public {
-        Calculator(calc).subtraction(num1, num2);
+        Calculator(calc).subtraction(num1, num2, msg.sender);
     }
 
     function multiplicationCalc(
@@ -24,11 +24,11 @@ contract UsersFactory {
         uint256 num1,
         uint256 num2
     ) public {
-        Calculator(calc).multiplication(num1, num2);
+        Calculator(calc).multiplication(num1, num2, msg.sender);
     }
 
     function divisionCalc(address calc, uint256 num1, uint256 num2) public {
-        Calculator(calc).division(num1, num2);
+        Calculator(calc).division(num1, num2, msg.sender);
     }
 
     function getSingleCalculation(
@@ -43,13 +43,13 @@ contract UsersFactory {
             Calculator.Operators operator
         )
     {
-        return Calculator(calc).getCalculation();
+        return Calculator(calc).getCalculation(msg.sender);
     }
 
     function getHistory(
         address calc
     ) public view returns (Calculator.Calculation[] memory) {
-        return Calculator(calc).getHistory();
+        return Calculator(calc).getHistory(msg.sender);
     }
 
     function getCalculatorUsers() public view returns (Calculator[] memory) {
